@@ -38,6 +38,8 @@ dependencies:
   flutter_svg: ^2.0.10+1
   http: ^1.2.1
   url_launcher: ^6.2.6
+  flutter_sticky_widgets: ^0.0.3
+  flutter_sticky_header: ^0.6.5
 
 dev_dependencies:
   flutter_test:
