@@ -8,23 +8,26 @@ class SearchTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SizedBox(
       height: 55,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          SearchTab(isActive:true, icon : Icons.search, text: 'All'),
-          SizedBox(width: 20),
-          SearchTab( icon : Icons.image, text: 'Images'),
-          SizedBox(width: 20),
-          SearchTab( icon : Icons.map, text: 'Map'),
-          SizedBox(width: 20),
-          SearchTab( icon : Icons.article, text: 'News'),
-          SizedBox(width: 20),
-          SearchTab( icon : Icons.shop, text: 'Shopping'),
-          SizedBox(width: 20),
-          SearchTab( icon : Icons.more_vert, text: 'More'),
-          SizedBox(width: 20),      
-
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SearchTab(isActive:true, icon : Icons.search, text: 'All'),
+            SizedBox(width: 20),
+            SearchTab( icon : Icons.image, text: 'Images'),
+            SizedBox(width: 20),
+            SearchTab( icon : Icons.map, text: 'Map'),
+            SizedBox(width: 20),
+            SearchTab( icon : Icons.article, text: 'News'),
+            SizedBox(width: 20),
+            SearchTab( icon : Icons.shop, text: 'Shopping'),
+            SizedBox(width: 20),
+            SearchTab( icon : Icons.more_vert, text: 'More'),
+            SizedBox(width: 20),      
+        
+          ],
+        ),
       ),
     );
   }

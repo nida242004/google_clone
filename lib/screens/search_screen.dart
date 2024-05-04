@@ -21,10 +21,14 @@ class SearchScreen extends StatelessWidget {
       title: searchQuery,
       child: Scaffold(
         body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 10,
+              ),
               //web header
               const SearchHeader(),
               //tabs
@@ -40,8 +44,8 @@ class SearchScreen extends StatelessWidget {
               ),
               //search results
               FutureBuilder(
-                future:
-                    ApiService().fetchData(queryTerm: searchQuery, start: start),
+                future: ApiService()
+                    .fetchData(queryTerm: searchQuery, start: start),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     return Column(
@@ -56,24 +60,29 @@ class SearchScreen extends StatelessWidget {
                           child: Text(
                             'About ${snapshot.data?['searchInformation']['formattedTotalResults']} results ${snapshot.data?['searchInformation']['formattedSearchTime']} seconds',
                             style: const TextStyle(
-                                fontSize: 15, color: Color(0xFF70757a)),
+                              fontSize: 15,
+                              color: Color(0xFF70757a),
+                            ),
                           ),
                         ),
                         ListView.builder(
+                          scrollDirection: Axis.vertical,
                           itemCount: snapshot.data?['items'].length,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.only(
-                                left: size.width <= 768 ? 15 : 150,
-                                top: 10,
+                                left: size.width <= 768 ? 18 : 150,
+                                top: 0,
                               ),
-                              child: SearchResultComponent(
-                                link: snapshot.data?['items'][index]
-                                    ['formattedUrl'],
-                                desc: snapshot.data?['items'][index]['snippet'],
-                                text: snapshot.data?['items'][index]['title'],
-                                linkToGo: snapshot.data?['items'][index]['link'],
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: SearchResultComponent(
+                                  link: snapshot.data?['items'][index]['formattedUrl'],
+                                  desc: snapshot.data?['items'][index]['snippet'],
+                                  text: snapshot.data?['items'][index]['title'],
+                                  linkToGo: snapshot.data?['items'][index]['link'],
+                                ),
                               ),
                             );
                           },
@@ -91,8 +100,8 @@ class SearchScreen extends StatelessWidget {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => SearchScreen(
-                                          start:
-                                              (int.parse(start) - 10).toString(),
+                                          start: (int.parse(start) - 10)
+                                              .toString(),
                                           searchQuery: searchQuery,
                                         ),
                                       ),
@@ -112,7 +121,8 @@ class SearchScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) => SearchScreen(
                                         searchQuery: searchQuery,
-                                        start: (int.parse(start) + 10).toString(),
+                                        start:
+                                            (int.parse(start) + 10).toString(),
                                       ),
                                     ),
                                   );

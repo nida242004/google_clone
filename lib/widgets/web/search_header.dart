@@ -11,15 +11,15 @@ class SearchHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.only(top: 25),
+      padding: size.width >=786 ?  const EdgeInsets.only(top: 25): const EdgeInsets.only(top: 40),
       child: Row(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsets.only(left: 15),
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 28, right: 15, top: 4),
+                  padding: size.width >= 768 ? const EdgeInsets.only(left: 28, right: 15, top: 5) : const EdgeInsets.only(left: 10, right: 0, top: 5),
                   child: Image.asset(
                     'assets/images/google-logo.png',
                     height: 30,
@@ -27,10 +27,10 @@ class SearchHeader extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 27,
+                  width: 25,
                 ),
                 Container(
-                  width: size.width * 0.40,
+                  width: size.width * 0.60,
                   decoration: BoxDecoration(
                       color: searchColor,
                       borderRadius: BorderRadius.circular(30),
